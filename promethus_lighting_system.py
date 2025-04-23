@@ -10,7 +10,7 @@ import cv2
 event = Event()
 class App:
     def __init__(self, window, cap, page, gesture, video_source=0, window_title = "Prometheus Lighting Systems: Control Center"):
-        self.icon = Image.open("Images/prometheus_icon.png")
+        self.icon = Image.open("Icons/prometheus_icon.png")
         self.icon_photo = ImageTk.PhotoImage(self.icon)
         self.window = window
         self.window.iconphoto(False, self.icon_photo)
