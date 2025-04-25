@@ -10,7 +10,7 @@ import cv2
 # event = Event()
 class App:
     def __init__(self, window, cap, page, gesture, video_source=0, window_title = "Prometheus Lighting Systems: Control Center"):
-        #-------------------Find way to add back icon----------------------#
+        #-------------------add prometheus icon----------------------#
         self.window = window
         self.window.title(window_title)
         self.width = 480
