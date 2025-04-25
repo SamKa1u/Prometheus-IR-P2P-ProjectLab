@@ -1,19 +1,17 @@
 import functools
-from threading import Thread, Event
-from facialAuthenticator import *
+# from threading import Thread, Event
+from packages.facialAuthenticator import *
 from PIL import Image, ImageTk
-from YOLOges_rec_v2 import gesture as gst
-from AddAuthUser import *
+#from packages.YOLOges_rec_v2 import gesture as gst
+from packages.AddAuthUser import *
 import tkinter as tk
 import cv2
 
-event = Event()
+# event = Event()
 class App:
     def __init__(self, window, cap, page, gesture, video_source=0, window_title = "Prometheus Lighting Systems: Control Center"):
-        self.icon = Image.open("Icons/prometheus_icon.png")
-        self.icon_photo = ImageTk.PhotoImage(self.icon)
+        #-------------------Find way to add back icon----------------------#
         self.window = window
-        self.window.iconphoto(False, self.icon_photo)
         self.window.title(window_title)
         self.width = 480
         self.height = 272
@@ -26,7 +24,8 @@ class App:
         self.overwrite = False
         if self.index is None:
             self.index = self.open_user()
-        print(self.index)
+#         print(self.index)
+        
         if cap:
             self.video_source = video_source
             self.vid = cv2.VideoCapture(self.video_source)
@@ -37,6 +36,7 @@ class App:
         self.button()
         self.window.mainloop()
         return
+    
     def update(self):
         ret, frame = self.vid.read()
         w = int(self.width*.6)
@@ -49,34 +49,33 @@ class App:
 
     def button(self):
         light_btn = tk.Button(self.window, text="GO", command=self.change_window0)
-        light_btn.place(relx=0.11, rely=0.15)
+        light_btn.place(relx=0.09, rely=0.225)
 
         Users_btn = tk.Button(self.window, text="GO", command=self.change_window1)
-        Users_btn.place(relx=0.11, rely=0.48)
+        Users_btn.place(relx=0.09, rely=0.725)
 
-        Pass_btn = tk.Button(self.window, text="GO", command=self.change_window2)
-        Pass_btn.place(relx=0.11, rely=.81)
         if self.gesture == 'light':
             light_btn.invoke()
         elif self.gesture == 'add':
             Users_btn.invoke()
+            
         match self.current:
             case 0:
-                self.canvas.create_rectangle(212,85,450,190, fill="grey")
+                self.canvas.create_rectangle(192,85,440,190, fill="grey")
                 red_btn = tk.Button(self.window, text = self.page["button_names"][0], command =self.button_red)
                 red_btn.place(relx=0.45,rely=0.35)
 
                 green_btn = tk.Button(self.window, text=self.page["button_names"][1], command=self.button_green)
-                green_btn.place(relx=0.65,rely=0.35)
+                green_btn.place(relx=0.58,rely=0.35)
 
                 blue_btn = tk.Button(self.window, text=self.page["button_names"][2], command=self.button_blue)
-                blue_btn.place(relx=0.85,rely=0.35)
+                blue_btn.place(relx=0.75,rely=0.35)
 
                 bright_btn = tk.Button(self.window, text=self.page["button_names"][4],command=self.button_bright)
-                bright_btn.place(relx=0.55,rely=0.55)
+                bright_btn.place(relx=0.5,rely=0.55)
 
                 dim_btn = tk.Button(self.window, text=self.page["button_names"][3], command=self.button_dim)
-                dim_btn.place(relx=0.75,rely=.55)
+                dim_btn.place(relx=0.70,rely=.55)
 
                 if self.gesture == 'r':
                     red_btn.invoke()
@@ -90,8 +89,6 @@ class App:
                     dim_btn.invoke()
 
             case 1:
-                #background box
-                self.canvas.create_rectangle(212, 85, 450, 190, fill="grey")
                 user0_btn = tk.Button(self.window, text=self.page["button_names"][1],
                                  command=functools.partial(self.button_user, 0))
                 user0_btn.place(relx=0.3, rely=0.025)
@@ -121,15 +118,6 @@ class App:
                     pass
                 elif self.gesture == 'dec':
                     pass
-            case 2:
-                self.canvas.create_rectangle(212, 85, 450, 190, fill="grey")
-                confirm_btn = tk.Button(self.window, text=self.page["button_names"][0],
-                                    command=self.button_confirm_pswrd)
-                confirm_btn.place(relx=0.809, rely=0.35)
-
-                clear_btn = tk.Button(self.window, text=self.page["button_names"][1],
-                                        command=self.button_clear)
-                clear_btn.place(relx=0.45, rely=0.35)
 
 
     def text(self):
@@ -141,39 +129,17 @@ class App:
         menu1.place(relx=0, rely=0)
         # light text pos
         menu1.insert(tk.END, "Light System\n")
-    # disable text editing for side menu
+        # disable text editing for side menu
         menu1.config(state="disabled")
 
         # Add Users text pos
         menu2 = tk.Text(self.window, height=1, width=16)
-        menu2.place(relx=0, rely=.333)
+        menu2.place(relx=0, rely=.5)
         # Add user text pos
         menu2.insert(tk.END, "Add Users\n")
-    # disable text editing for side menu
+        # disable text editing for side menu
         menu2.config(state="disabled")
 
-    # Password settings text pos
-        menu3 = tk.Text(self.window, height=1, width=16)
-        menu3.place(relx=0, rely=.66)
-        # Password settings text pos
-        menu3.insert(tk.END, "Password Settings\n")
-    # disable text editing for side menu
-        menu3.config(state="disabled")
-
-    #handle differnt page text cases
-        if self.current == 2:
-                # user instructions pos
-                instruct = tk.Text(self.window, height=1, width=22)
-                instruct.place(relx=self.page["text"][0][1], rely=self.page["text"][0][2])
-                # user instructions text
-                instruct.insert(tk.END, self.page["text"][0][0])
-                instruct.config(state="disabled")
-
-                # user input pos
-                txt = tk.Text(self.window, height=1, width=20)
-                txt.place(relx=self.page["text"][1][1], rely=self.page["text"][1][2])
-                # user input text
-                txt.insert(tk.END, self.page["text"][1][0])
 
     def change_window0(self):
         self.window.destroy()
@@ -183,9 +149,6 @@ class App:
         self.window.destroy()
         adduser()
 
-    def change_window2(self):
-        self.window.destroy()
-        pswrdsttng()
 
     # page 0 buttons
     def button_red(self):
@@ -222,7 +185,7 @@ class App:
 
     def open_user(self):
         i = 0
-        enc0, enc1, enc2, enc3, enc4, none = loaduser()
+        enc0, enc1, enc2, enc3, enc4, _ = loaduser()
         encodings = [enc0, enc1, enc2, enc3, enc4]
         for i in range(0, 5):
             if not encodings:
@@ -253,14 +216,6 @@ class App:
             txt.insert(tk.END, f'{text}')
             txt.config(state="disabled")
 
-    # page 2 buttons
-    def button_confirm_pswrd(self):
-        print("confirm_pswrd")
-
-    def button_clear(self):
-        print("clear")
-
-
 
     def __del__(self):
         if self.vid.isOpened():
@@ -272,12 +227,8 @@ def lightcntrl():
     current = App(tk.Tk(), cap=False, page = Ctrl_page, gesture = gesture)
 
 def adduser():
-    current = App(tk.Tk(), cap=True,page=AddUser_page, gesture = gesture)
+    current = App(tk.Tk(), cap=False,page=AddUser_page, gesture = gesture)   #enable vid with cap = True
 
-def pswrdsttng():
-    current = App(tk.Tk(), cap=False, page=PswrdSttng_page, gesture = gesture)
-
-#
 
 def page_info(select):
     match select:
@@ -293,21 +244,12 @@ def page_info(select):
                 "button_names": ["cap", "user0", "user1" ,"user2", "user3", "user4", "confirm", "discard"],
                 "text": [[],],
             }
-        case 2:
-            info = {
-                "current_page": 2,                                                                  # 2: password settings (first set and auth)
-                "button_names": ["confirm", "clear"],
-                "text": [
-                    ["Add a gesture sequence to set up your device",.5,.5],
-                    ["awaiting gestures...", .52, .6]
-                ]
-            }
         case _:
             info = None
     return info
 
-def get_gesture(gesture):
-    gst(gesture)
+#def get_gesture(gesture):
+ #   gst(gesture)
 
 
 if __name__ == "__main__":
@@ -315,14 +257,13 @@ if __name__ == "__main__":
     # initializes page info
     Ctrl_page = page_info(0)
     AddUser_page = page_info(1)
-    PswrdSttng_page = page_info(2)
-    gesture_thread = Thread(target=get_gesture, daemon = True, args=(gesture,))
-    gesture_thread.start()
+#     gesture_thread = Thread(target=get_gesture, daemon = True, args=(gesture,))
+#     gesture_thread.start()
     while True:
         try:
         #pages calls
-            current = App(tk.Tk(), cap=False, page=PswrdSttng_page, gesture=gesture)
+            current = App(tk.Tk(), cap=False, page=Ctrl_page, gesture=gesture)
             print(gesture)
         except Exception as e:
             print(e)
-        gesture_thread.join()
+#         gesture_thread.join()
