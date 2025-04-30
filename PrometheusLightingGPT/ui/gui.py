@@ -1,11 +1,16 @@
 # ui/gui.py
+import cv2
 import tkinter as tk
 from PIL import Image, ImageTk
-import cv2
+
+
 
 class PrometheusApp:
     def __init__(self, root, shared_state, gesture_map):
+        self.icon = Image.open("ui/prometheus_icon.png")
+        self.icon_photo = ImageTk.PhotoImage(self.icon)
         self.root = root
+        self.root.iconphoto(False, self.icon_photo)
         self.shared = shared_state
         self.gesture_map = gesture_map
 
@@ -16,7 +21,10 @@ class PrometheusApp:
         self.canvas.pack()
 
         self.label = tk.Label(root, text="Waiting for gesture...", font=("Arial", 14))
-        self.label.pack(pady=10)
+        self.label.pack(pady=5)
+
+        self.auth_label = tk.Label(root, text="Status: Not Authenticated", font=("Arial", 12))
+        self.auth_label.pack(pady=5)
 
         self.button_frame = tk.Frame(root)
         self.button_frame.pack()
@@ -39,12 +47,23 @@ class PrometheusApp:
             self.canvas.img = img
 
         gesture = self.shared.get("gesture")
-        if gesture:
-            self.label.config(text=f"Detected gesture: {gesture}")
-            if gesture in self.buttons:
-                self.buttons[gesture].config(bg="lightgreen")
-                self.root.after(300, lambda: self.buttons[gesture].config(bg="SystemButtonFace"))
+        #if authenticated display authorized
+        if self.shared.get("authenticated") is True:
+            self.auth_label.config(text="Status: ✅ Authorized", fg="green")
+            #if authenticated and gesture detected display gesture
+            if gesture:
+                self.label.config(text=f"Detected gesture: {gesture}")
+                #if gesture is a button indicate with color change
+                if gesture in self.buttons:
+                    self.buttons[gesture].config(bg="lightgreen")
+                    self.root.after(300, lambda: self.buttons[gesture].config(bg="SystemButtonFace"))
+
+            #wait if no gesture detected
+            else:
+                self.label.config(text="Waiting for gesture...")
+        #if not authenticated inform user gesture control is off
         else:
-            self.label.config(text="Waiting for gesture...")
+            self.auth_label.config(text="Status: ❌ Not Authorized", fg="red")
+            self.label.config(text="Gesture Control Off")
 
         self.root.after(30, self.update)
