@@ -28,7 +28,7 @@ Samuel Kalu <sub>(CV software developement)</sub>
 * Email : [samkalu@ttu.edu](mailto:samkalu@ttu.edu)
 * [Linkedin](https://www.linkedin.com/in/samuel-kalu-74a359342/)
 
-Aiden Zsebenyi <sub>(Hardware development: IR reciever)</sub>
+Aiden Zsebenyi <sub>(software and Hardware development: IR reciever)</sub>
 * Email : [azsebeny@ttu.edu](mailto:azsebeny@ttu.edu)
 
 Michael Dec  <sub>(Hardware development: IR emitter)</sub>
