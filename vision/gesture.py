@@ -16,7 +16,7 @@ class GestureDetector:
                 time.sleep(0.01)
                 continue
             if self.shared.get("authenticated") is True:
-                results = self.model.predict(frame, conf=0.65, imgsz=480, max_det=1, verbose=False)
+                results = self.model.predict(frame, conf=0.863, imgsz=480, max_det=1, verbose=False)
                 for result in results:
                     boxes = result.boxes.cls.tolist()
                     if boxes:
