@@ -1,7 +1,7 @@
 #   Prometheus Lighting System
 
 A [TTU Whitacre College of Engineering](https://www.depts.ttu.edu/coe/) ECE-3338 lab project \
- <img src = 'Images/dbl__T.png'/>
+ <img src = 'Images/dbl_T.png'/>
 
 ## Description
 
@@ -13,7 +13,7 @@ The Prometheus Lighting system is a light control system that leverages computer
 * ultralytics
   
 ### Overview
-<img src = '' />
+<img src = 'Images/prometheus_block_diagram.png' />
 
 ### Hardware
 
@@ -22,27 +22,27 @@ The Prometheus Lighting system is a light control system that leverages computer
 * Arducam
 * NodeMCU ESP12E 
 * Custom-built IR emitter \
-  <img src = ''/> 
+  <img src = 'Images/master_unit.jpeg' style=" width:445;height:250px;"/> 
   
 #### Light control unit
 * Custom-built IR receiver 
 * Arduino mega
 * LED lightstrip \
-   <img src = ''/>
+   <img src = 'Images/LED_controller.jpeg' style=" width:445;height:250px;" />
 
 ### Software
 
 #### Model Training
 * [Training pipeline](https://github.com/SamKa1u/YOLO-Transfer-Learning)
-* Results
+* Results:
 <div class= 'flex-cols'>
- <img src = ''/> 
- <img src = ''/>
- <img src = ''/>
+ <img src = 'Images/F1_curve.png' style=" width:445;height:250px;"/> 
+ <img src = 'Images/confusion_matrix.png' style=" width:445;height:250px;"/>
+ <img src = 'Images/results.png' style=" width:445;height:250px;"/>
 </div>
 
 #### GUI
- <img src = ''/> 
+ <img src = 'Images/gui.jpeg'/> 
 
 ## Meet The Team
 
