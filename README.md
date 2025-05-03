@@ -14,10 +14,9 @@ A gesture-based Light control system built around a point to point infrared comm
 
 ### Hardware
 
-* Raspberry pi 5
-* Arduino mega
-* Xiao ESP32S3 Sense
+* NodeMCU Esp12E
 * Custom-built IR emitter
+* Arduino mega
 * Custom-built IR receiver
 * LED lightstrip
 
@@ -46,4 +45,3 @@ Inspiration, code snippets, etc.
 * [Edje Electronics](https://www.ejtech.io/learn/train-yolo-models)
 * [Tkinter](https://docs.python.org/3/library/tkinter.html#module-tkinter)
 * [Raspberry pi](https://www.raspberrypi.com/software/)
-* [Seeed Studio](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/)
