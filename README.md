@@ -1,27 +1,50 @@
 #   Prometheus Lighting System
 
 A [TTU Whitacre College of Engineering](https://www.depts.ttu.edu/coe/) ECE-3338 lab project
+ <img src = ''/>
 
 ## Description
 
-A gesture-based Light control system built around a point to point infrared communication system.
+The Prometheus Lighting system is a light control system that leverages computer vision software to perform gesture detection. It relies on an infrared point to point communication system to transmit gestures detected by the main unit (Pi-5) to the control unit (Arduino Mega) of an LED strip.​
 
 ### Dependencies
 
 * OpenCV
-* face_recognition
 * ultralytics
+  
+### Overview
+<img src = '' />
 
 ### Hardware
 
+#### Master controller
 * Raspberry pi 5
+* Arducam
+* NodeMCU ESP12E 
+* Custom-built IR emitter \
+  <img src = ''/> 
+  
+#### Light control unit
+* Custom-built IR receiver 
 * Arduino mega
-* Xiao ESP32S3 Sense
-* Custom-built IR emitter
-* Custom-built IR receiver
-* LED lightstrip
+* LED lightstrip \
+   <img src = ''/>
 
-## Authors
+### Software
+
+#### Model Training
+* [Training pipeline](https://github.com/SamKa1u/YOLO-Transfer-Learning)
+* Results
+<div class= 'flex-cols'>
+ <img src = ''/> 
+ <img src = ''/>
+ <img src = ''/>
+</div>
+
+#### GUI
+ <img src = ''/> 
+
+## Meet The Team
 
 Samuel Kalu <sub>(CV software developement)</sub>
   
@@ -34,16 +57,17 @@ Aiden Zsebenyi <sub>(Software and Hardware development: IR reciever)</sub>
 Michael Dec  <sub>(Hardware development: IR emitter)</sub>
 * Email : [mdec@ttu.edu](mailto:mdec@ttu.edu)
 
-
-
 ## Acknowledgments
 
 ### Special thanks to Professor Everret Mcarthur
 Inspiration, code snippets, etc.
+* [TTU WCOE ECE Department](https://www.depts.ttu.edu/ece/)
 * [Learnopencv](https://learnopencv.com/face-detection-opencv-dlib-and-deep-learning-c-python/#:~:text=We%20notice%20that%20the%20OpenCV,along%20with%20the%20bounding%20box.)
 * [Label Studio](https://labelstud.io/guide/export)
 * [Ultralytics](https://docs.ultralytics.com/guides/raspberry-pi/#set-up-ultralytics)
 * [Edje Electronics](https://www.ejtech.io/learn/train-yolo-models)
 * [Tkinter](https://docs.python.org/3/library/tkinter.html#module-tkinter)
 * [Raspberry pi](https://www.raspberrypi.com/software/)
-* [Seeed Studio](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/)
+* [Bro Code](https://www.youtube.com/watch?v=STEOavXqXkQ&ab_channel=BroCode)
+* [Gpiozero docs](https://gpiozero.readthedocs.io/en/latest/api_output.html)
+  
