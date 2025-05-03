@@ -4,7 +4,7 @@ A [TTU Whitacre College of Engineering](https://www.depts.ttu.edu/coe/) ECE-3338
 
 ## Description
 
-A gesture-based Light control system built around a point to point infrared communication system.
+A gesture detection application that interfaces with a point to point infrared communication system to transmit commands to an LED controller. Fully featured edition includes facial authentication and a webserver for adding to the list of authenticated users.
 
 ### Dependencies
 
