@@ -1,6 +1,6 @@
 #   Prometheus Lighting System
 
-A [TTU Whitacre College of Engineering](https://www.depts.ttu.edu/coe/) ECE-3338 lab project
+A [TTU Whitacre College of Engineering](https://www.depts.ttu.edu/coe/) ECE-3338 lab project \
  <img src = ''/>
 
 ## Description
