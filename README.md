@@ -46,7 +46,7 @@ The Prometheus Lighting system is a light control system that leverages computer
 
 ## Meet The Team
 
-Samuel Kalu <sub>(CV software developement)</sub>
+Samuel Kalu <sub>(CV software development)</sub>
   
 * Email : [samkalu@ttu.edu](mailto:samkalu@ttu.edu)
 * [Linkedin](https://www.linkedin.com/in/samuel-kalu-74a359342/)
